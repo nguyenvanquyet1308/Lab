@@ -28,7 +28,7 @@ public class ControllerBai2 {
 		sv.setName("Nguyễn Văn Quyết");
 		sv.setMarks(10.);
 		sv.setGender(false);
-		return "Bai2/form";
+		return "Bai2/formBai2";
 	}
 
 	@PostMapping("Bai2/student/save")
@@ -37,9 +37,9 @@ public class ControllerBai2 {
 		if (result.hasErrors()) {
 			model.addAttribute("message", "Vui lòng sửa các lỗi sau:");
 			model.addAttribute("errors", result.getAllErrors());
-			return "bai2/form";
+			return "Bai2/formBai2";
 		}
-		return "bai2/save";
+		return "Bai2/saveBai2";
 	}
 
 	@ModelAttribute("genders")
