@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- Base Define -->
+	<definition name="base.definition"
+		template="/WEB-INF/layouts/classic.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="menu" value="/WEB-INF/home.jsp/" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/footer/footer.jsp" />
+	</definition>
+
+	<!-- Home Page  -->
+	<definition name="homePage" extends="base.definition">
+		<put-attribute name="title" value="Home Page" />
+		<put-attribute name="body" value="/WEB-INF/home.jsp/" />
+	</definition>
+
+	<!-- ContactUs Page -->
+	<definition name="sanphamPage" extends="base.definition">
+		<put-attribute name="title" value="Contact Us" />
+		<put-attribute name="body" value="/WEB-INF/body/sanpham.jsp" />
+	</definition>
+	<definition name="blogPage" extends="base.definition">
+		<put-attribute name="title" value="Contact Us" />
+		<put-attribute name="body" value="/WEB-INF/body/blog.jsp" />
+	</definition>
+	<definition name="lienHePage" extends="base.definition">
+		<put-attribute name="title" value="Contact Us" />
+		<put-attribute name="body" value="/WEB-INF/body/lienhe.jsp" />
+	</definition>
+
+</tiles-definitions>

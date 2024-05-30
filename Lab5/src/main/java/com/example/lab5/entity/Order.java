@@ -1,6 +1,7 @@
 package com.example.lab5.entity;
 
 import java.io.Serializable;
+
 import java.util.Date;
 import java.util.List;
 
