@@ -13,7 +13,7 @@ import com.example.lab5.entity.Category;
 
 @Controller
 public class CategoryController {
-
+     
 	@Autowired
 	CategoryRepository daoCategory;
 
@@ -40,6 +40,7 @@ public class CategoryController {
 
 	@RequestMapping("/category/create")
 	public String create(Category item) {
+		
 		daoCategory.save(item);
 		return "redirect:/category/index";
 	}
