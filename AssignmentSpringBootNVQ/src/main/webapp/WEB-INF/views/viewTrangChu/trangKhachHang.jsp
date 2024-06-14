@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,12 +15,15 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="..." crossorigin="anonymous"></script>
+
 <link rel="stylesheet" href="css/style.css">
 
 <body>
 
 	<div id="wrapper">
-		<%@ include file="../layout/header.jsp" %>
+		<%@ include file="../layout/header.jsp"%>
 		<div id="banner">
 			<div class="box-left">
 				<h2>
@@ -37,74 +42,107 @@
 				</a>
 			</div>
 		</div>
+		<form:form action="/product" modelAttribute="product">
+			<div class="row row-cols-1 row-cols-md-3 g-5 py-5">
+				<c:forEach var="item" items="${page.content}">
+					<div class="col">
+						<div class="card">
 
-		<div class="row row-cols-1 row-cols-md-3 g-5 py-5">
-			<c:forEach var="item" items="${itemProduct}">
-				<div class="col">
-					<div class="card">
-						<img src="image/gucci1.jpg" " class="card-img-top" alt="...">
-
-						<div class="card-body">
-							<h5 class="card-title">${item.name}</h5>
-							<p class="card-text">${item.description}</p>
-						</div>
-						<div class="mb-5 d-flex justify-content-around">
-							<h3>${item.unitPrice}</h3>
-							<div class="icon-cart">
-								<img src="assets/iconcart.jpg" data-bs-toggle="modal"
-									data-bs-target="#myModal" alt="" height="60px" width="60px">
+							<img alt="" src="/getimgae/${item.image}" class="card-img-top">
+							<div class="card-body">
+								<h5 class="card-title text-center mt-2">${item.name}</h5>
 							</div>
-						</div>
-					</div>
+							<div class="mb-5 d-flex justify-content-around">
+								<h3 class="unitPrice">${item.unitPrice}₫</h3>
+								<div class="icon-cart">
 
-				</div>
-			</c:forEach>
-			<div class="modal" id="myModal">
-				<div class="modal-dialog modal-lg modal-dialog-scrollable">
-					<div class="modal-content">
+									<a class=" show-modal" href="${item.productId}">
+										<img src="assets/iconcart.jpg" alt="" height="60px"
+										width="60px">
 
-						<!-- Modal Header -->
-						<div class="modal-header">
-							<h4 class="modal-title">Tên giày</h4>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-						</div>
-
-						<!-- Modal body -->
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-md-6">
-									<img src="path_to_shoe_image.jpg" class="img-fluid"
-										alt="Hình ảnh giày">
-								</div>
-								<div class="col-md-6">
-									<h5>Size:</h5>
-									<select class="form-select mb-3">
-										<option selected>Chọn size</option>
-										<option value="1">Size 1</option>
-										<option value="2">Size 2</option>
-										<option value="3">Size 3</option>
-									</select>
-									<h5>Số lượng:</h5>
-									<input type="number" class="form-control mb-3" value="1">
-									<h5>Giá bán:</h5>
-									<p>$100</p>
+									</a>
 								</div>
 							</div>
 						</div>
-
-						<!-- Modal footer -->
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">Thêm vào
-								giỏ hàng</button>
-							<button type="button" class="btn btn-success">Thanh toán</button>
-						</div>
-
 					</div>
-				</div>
+				</c:forEach>
+				<nav aria-label="Page navigation" class="text-center;">
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link"
+							href="?p=0">First</a></li>
+						<li class="page-item"><a class="page-link"
+							href="?p=${page.number-1}">Previous</a></li>
+						<c:forEach var="i" begin="0" end="${page.totalPages-1}">
+							<li
+								class="page-item <c:if test="${i eq page.number}">active</c:if>">
+								<a class="page-link" href="?p=${i}">${i+1}</a>
+							</li>
+						</c:forEach>
+						<li class="page-item"><a class="page-link"
+							href="?p=${page.number+1}">Next</a></li>
+						<li class="page-item"><a class="page-link"
+							href="?p=${page.totalPages-1}">Last</a></li>
+					</ul>
+				</nav>
+				<!-- Button trigger modal -->
+
+
+				<!-- Modal -->
+				<form:form>
+					<div class="modal fade" id="exampleModal" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel"></h5>
+									<span id="name"> </span>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+
+										<div class="col-md-6">
+											<img src="" id="productImage" height="120px" width="180px"
+												class="img-fluid" alt="Hình ảnh giày">
+										</div>
+										<div class="col-md-6">
+											<h5>Size:</h5>
+											<select class="form-select mb-3">
+												<option value="38">size 38</option>
+												<option value="39">size 39</option>
+												<option value="40">size 40</option>
+												<option value="41">size 41</option>
+												<option value="42">size 42</option>
+											</select>
+											<h5>Số lượng:</h5>
+											<input type="number" id="quantity" class="form-control mb-3"
+												value="1">
+											<div class="form-group">
+												<label for="unitPrice">Giá</label> <br> <span
+													id="unitPrice" style="color: red;"> </span>
+											</div>
+										</div>
+										<div>
+											<a style="color: blue;">Xem chi tiết sản phẩm</a>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Close</button>
+									<a href="" class="btn btn-primary" id="IdCuaProduct"  >Thêm vào giỏ hàng
+										</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form:form>
+				<!-- - modal -->
+				Giải thích
+
 			</div>
-
-		</div>
-
+		</form:form>
 		<div id="saleoff">
 			<div class="box-left">
 				<h1>
@@ -114,100 +152,47 @@
 			<div class="box-right"></div>
 		</div>
 
-		<div id="comment">
-			<h2>NHẬN XÉT CỦA KHÁCH HÀNG</h2>
-			<div id="comment-body">
-				<div class="prev">
-					<a href="#"> <img src="assets/prev.png" alt="">
-					</a>
-				</div>
-				<ul id="list-comment">
-					<li class="item">
-						<div class="avatar">
-							<img src="assets/avatar_1.png" alt="">
 
-						</div>
-						<div class="stars">
-							<span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span>
-						</div>
-						<div class="name">Nguyễn Đình Vũ</div>
-
-						<div class="text">
-							<p>Lorem Ipsum is simply dummy text of the printing and
-								typesetting industry. Lorem Ipsum has been the industry's
-								standard dummy text ever since the 1500s, when an unknown
-								printer took a galley of type and scrambled it to make a type
-								specimen book.</p>
-						</div>
-					</li>
-					<li class="item">
-						<div class="avatar">
-							<img src="assets/avatar_1.png" alt="">
-
-						</div>
-						<div class="stars">
-							<span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span>
-						</div>
-						<div class="name">Trần Ngọc Sơn</div>
-
-						<div class="text">
-							<p>Lorem Ipsum is simply dummy text of the printing and
-								typesetting industry. Lorem Ipsum has been the industry's
-								standard dummy text ever since the 1500s, when an unknown
-								printer took a galley of type and scrambled it to make a type
-								specimen book.</p>
-						</div>
-					</li>
-					<li class="item">
-						<div class="avatar">
-							<img src="assets/avatar_1.png" alt="">
-
-						</div>
-						<div class="stars">
-							<span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span> <span> <img src="assets/star.png" alt="">
-							</span>
-						</div>
-						<div class="name">Nguyễn Trần Vi</div>
-
-						<div class="text">
-							<p>Lorem Ipsum is simply dummy text of the printing and
-								typesetting industry. Lorem Ipsum has been the industry's
-								standard dummy text ever since the 1500s, when an unknown
-								printer took a galley of type and scrambled it to make a type
-								specimen book.</p>
-						</div>
-					</li>
-				</ul>
-				<div class="next">
-					<a href="#"> <img src="assets/next.png" alt="">
-					</a>
-				</div>
-			</div>
-		</div>
-		<%@ include file="../layout/footer.jsp" %>
+		<%@ include file="../layout/footer.jsp"%>
 
 	</div>
-	
-	<script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					$('.show-modal').on(
+							'click',
+							function(event) {
+								event.preventDefault();
+
+								var href = $(this).attr('href');
+
+								$.get(href, function(Product, status) {
+
+									$('#name').text(Product.name);
+									$('#productImage').attr('src',
+											"/getimgae/" + Product.image);
+									$('#unitPrice').text(
+											Product.unitPrice + " đ");
+									
+                                    $('#IdCuaProduct').attr('href',"/gioHang/"+ Product.productId);
+								});
+
+								$('#exampleModal').modal('show');
+							});
+				});
+	</script>
+
 </body>
 </html>
