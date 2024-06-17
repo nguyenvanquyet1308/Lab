@@ -32,5 +32,5 @@ public class Orders {
     
     private Float amount;
     
-    private Integer status;
+    private Boolean status;
 }

@@ -20,6 +20,7 @@ public class CartItem {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	//	this.subTotal = product.getUnitPrice() * quantity; 
 	}
 
 	public int getQuantity() {
@@ -31,6 +32,7 @@ public class CartItem {
 	}
 
 	public double getSubTotal() {
+		subTotal = product.getUnitPrice() * quantity;
 		return subTotal;
 	}
 

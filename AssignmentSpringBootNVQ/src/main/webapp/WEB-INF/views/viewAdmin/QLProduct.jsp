@@ -20,10 +20,10 @@ tr {
 
 	<div class="user mt-5">
 		<div class="text-start ">
-		<a href="/admin/QLProduct/cr"><button class="btn btn-success" >Create New User</button></a>	
+		<a href="/QLProduct/cr"><button class="btn btn-success" >Create New User</button></a>	
 		</div>
 		<h3 class="text-center">User Management</h3>
-		<form:form action="/admin/QLProduct" modelAttribute="product">
+		<form:form action="/QLProduct" modelAttribute="product">
 			<table class="table table-bordered">
 				<thead class="table-dark">
 					<tr>
@@ -58,10 +58,10 @@ tr {
 
 							<td>
 								<button class="btn btn-primary"
-									formaction="/admin/QLProduct/edit/${item.productId}">Edit</button>
+									formaction="/QLProduct/edit/${item.productId}">Edit</button>
 
 								<a class="btn btn-danger btn-sm"
-								href="/admin/QLProduct/delete/${item.productId}">Delete</a>
+								href="/QLProduct/delete/${item.productId}">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

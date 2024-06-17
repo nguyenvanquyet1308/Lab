@@ -45,18 +45,26 @@ body {
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="item" items="${items}">
-							<form:form action="gioHang/update/${item.productId}" method="post">
+						<c:forEach var="item" items="${sessionScope.cart.allItems}">
+							<form:form action="gioHang/update/${item.productId}"
+								method="post">
 								<tr>
-									<th>${item.productId}</th>
-									<td>${item.name}</td>
-									<td>${item.unitPrice}</td>
-									<td><input name="qty" value="${item.quantity}"
-										class="form-control" onblur="this.form.submit()"
-										style="width: 70px;"></td>
-									<td>${item.unitPrice * item.quantity}</td>
-									<td><a href="gioHang/remove/${item.productId}"
-										class="btn btn-danger">Remove</a></td>
+									<th>${item.product.productId}</th>
+									<td>${item.product.name}</td>
+									<td>${item.product.unitPrice}</td>
+									<td><input type="hidden" value="${item.product.productId}"
+										name="id"> <input type="number" min="1"
+										value="${item.quantity}" name="qty">
+										<button type="submit">Update</button> <fmt:formatNumber
+											value="${item.subTotal}" type="currency" /></td>
+									<td>
+										<form action="/gioHang/remove"
+											method="post">
+											<input type="hidden" value="${item.product.productId}"
+												name="id">
+											<button type="submit">Remove</button>
+										</form>
+									</td>
 								</tr>
 							</form:form>
 

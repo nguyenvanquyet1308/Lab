@@ -12,7 +12,7 @@
 
 			<a href="#" class="list-group-item list-group-item-action">Đơn
 				hàng</a> <a href="#" class="list-group-item list-group-item-action">Tài
-				khoản</a> <a href="#" class="list-group-item list-group-item-action">Đăng
+				khoản</a> <a href="/dangXuat" class="list-group-item list-group-item-action">Đăng
 				xuất</a>
 		</div>
 	</div>

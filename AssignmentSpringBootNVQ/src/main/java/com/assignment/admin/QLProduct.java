@@ -28,7 +28,7 @@ public class QLProduct {
 	@Autowired
 	CategoryDAO daoCategory;
 
-	@RequestMapping("/admin/QLProduct")
+	@RequestMapping("/QLProduct")
 	public String index(Model model) {
 
 		Product product = new Product();
@@ -39,14 +39,14 @@ public class QLProduct {
 		return "/viewAdmin/QLProduct";
 	}
 
-	@RequestMapping("/admin/QLProduct/delete/{productId}")
+	@RequestMapping("/QLProduct/delete/{productId}")
 	public String Delete(@PathVariable("productId") Integer productId) {
 		daoProduct.deleteById(productId);
 
-		return "redirect:/admin/QLProduct";
+		return "redirect:/QLProduct";
 	}
 
-	@RequestMapping("/admin/QLProduct/cr")
+	@RequestMapping("/QLProduct/cr")
 	public String Cr(Model model) {
 		Product product = new Product();
 		model.addAttribute("product", product);
@@ -54,7 +54,7 @@ public class QLProduct {
 		return "viewAdmin/createProduct";
 	}
 
-	@RequestMapping("/admin/QLProduct/create")
+	@RequestMapping("/QLProduct/create")
 	public String create(@Valid @ModelAttribute("product") Product item, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			List<Product> items = daoProduct.findAll();
@@ -67,7 +67,7 @@ public class QLProduct {
 		return "redirect:/admin/QLProduct";
 	}
 
-	@RequestMapping("/admin/QLProduct/edit/{productId}")
+	@RequestMapping("/QLProduct/edit/{productId}")
 	public String EditProduct(Model model, @PathVariable("productId") Integer id) {
 		Product product = daoProduct.findById(id).get();
 		model.addAttribute("product", product);
@@ -78,7 +78,7 @@ public class QLProduct {
 		return "viewAdmin/editProduct";
 	}
 
-	@RequestMapping("/admin/QLProduct/update")
+	@RequestMapping("/QLProduct/update")
 	public String UpdateProduct(@Valid @ModelAttribute("product") Product item, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
@@ -88,7 +88,7 @@ public class QLProduct {
 		}
 		daoProduct.save(item);
 
-		return "redirect:/admin/QLProduct";
+		return "redirect:/QLProduct";
 	}
 
 	public void ShowCombobox(Model model) {

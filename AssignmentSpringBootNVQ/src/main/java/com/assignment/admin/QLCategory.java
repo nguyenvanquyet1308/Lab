@@ -23,9 +23,10 @@ public class QLCategory {
 	@Autowired
 	CategoryDAO daoCategory;
 
-	@RequestMapping("/admin/category/index")
+	@RequestMapping("/category/index")
 	public String index(Model model) {
-
+       
+		
 
 		Category category = new Category();
 		model.addAttribute("itemCategory", category);
@@ -36,7 +37,7 @@ public class QLCategory {
 
 	}
 
-	@RequestMapping("/admin/category/edit/{id}")
+	@RequestMapping("/category/edit/{id}")
 	public String edit(Model model, @PathVariable("id") Integer id) {
 		Category item = daoCategory.findById(id).get();
 		model.addAttribute("itemCategory", item);
@@ -45,7 +46,7 @@ public class QLCategory {
 		return "/viewAdmin/QLCategory";
 	}
 
-	@RequestMapping("/admin/category/create")
+	@RequestMapping("/category/create")
 	public String create(@Valid @ModelAttribute("itemCategory") Category item , BindingResult result ,Model model) {
         if(result.hasErrors()) {
         	List<Category> items = daoCategory.findAll();
@@ -57,7 +58,7 @@ public class QLCategory {
 		return "redirect:/admin/category/index";
 	}
 
-	@RequestMapping("/admin/category/update")
+	@RequestMapping("/category/update")
 	public String update(@Valid @ModelAttribute("itemCategory") Category item , BindingResult result , Model model) {
 		if(result.hasErrors()) {
         	List<Category> items = daoCategory.findAll();
@@ -66,10 +67,10 @@ public class QLCategory {
         }		
 		
 		daoCategory.save(item);
-		return "redirect:/admin/category/edit/" + item.getCategoryId();
+		return "redirect:/category/edit/" + item.getCategoryId();
 	}
 
-	@RequestMapping("/admin/category/delete/{categoryId}")
+	@RequestMapping("/category/delete/{categoryId}")
 	public String create(@PathVariable("categoryId") Integer categoryId) {
 		daoCategory.deleteById(categoryId);
 		return "redirect:/admin/category/index";

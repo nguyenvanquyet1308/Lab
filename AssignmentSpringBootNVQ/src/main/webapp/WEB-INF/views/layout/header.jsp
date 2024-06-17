@@ -10,7 +10,7 @@
 	<c:when test="${sessionScope.user.admin == true}">
 		<div class="header">
 			<div id="header">
-				<a href="/trangchu" class="logo"> <img
+				<a href="/" class="logo"> <img
 					src="${pageContext.request.contextPath}/image/logogiay1.jpg" alt="">
 				</a>
 				<div id="menu">
@@ -49,7 +49,8 @@
 									href="/hoSo/${customer.customerId}">Hồ sơ</a></li>
 								<li><a class="dropdown-item text-body "
 									href="/dangXuat">Đăng Xuất</a></li>
-
+									<li><a class="dropdown-item text-body "
+									href="/donHang">Đơn hàng</a></li>
 							</ul>
 				
 					</div>
@@ -90,8 +91,6 @@
 				</div>
 				<div id="actions">
 					<div class="item">
-						
-
 							<img src="${pageContext.request.contextPath}/assets/user.png"
 								alt="" id="dropdownMenuButton" data-bs-toggle="dropdown"
 								aria-expanded="false">
@@ -101,9 +100,10 @@
 									href="/hoSo/${customer.customerId}">Hồ sơ</a></li>
 								<li><a class="dropdown-item text-body "
 									href="/dangXuat">Đăng Xuất</a></li>
+									<li><a class="dropdown-item text-body "
+									href="/donHang">Đơn hàng</a></li>
 							</ul>
-						
-
+				
 					</div>
 
 					<div class="item">

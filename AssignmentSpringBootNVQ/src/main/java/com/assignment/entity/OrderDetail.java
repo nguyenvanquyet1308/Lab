@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Data
 @Entity
@@ -30,4 +31,21 @@ public class OrderDetail {
     private Integer quantity;
     
     private Float unitPrice;
+    
+
+	@Transient
+	Float subTotal = quantity*unitPrice;
+
+
+//	public OrderDetail(Float subTotal) {
+//		super();
+//		this.subTotal = quantity * unitPrice;
+//	}
+//
+//	public Float getSubTotal() {
+//		subTotal = unitPrice * quantity;
+//		return subTotal;
+//	}
+	
+
 }

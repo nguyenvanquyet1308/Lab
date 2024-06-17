@@ -1,15 +1,15 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Register</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
+	rel="stylesheet" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <style>
@@ -35,9 +35,8 @@
 	background-color: #EEEEEE;
 }
 </style>
-
 <body>
-	<%@ include file="../layout/header.jsp" %>
+	<%@ include file="../layout/header.jsp"%>
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
@@ -46,49 +45,66 @@
 						<h3>Đăng Ký</h3>
 					</div>
 					<div class="card-body">
-						<form>
+						<form:form action="/dangKy" method="post"
+							modelAttribute="customer">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">Name</label> <input
-									type="text" class="form-control" id="fullName" required>
+								<form:label path="name" class="form-label">Name</form:label>
+								<form:input path="name" type="text" class="form-control"
+									id="name" />
+								<form:errors path="name" class="text-danger" />
+
 							</div>
 							<div class="mb-3">
-								<label for="email" class="form-label">Email</label> <input
-									type="email" class="form-control" id="email" required>
+								<form:label path="email" class="form-label">Email</form:label>
+								<form:input path="email" class="form-control" id="email" />
+								<form:errors path="email" class="text-danger" />
+
 							</div>
 							<div class="mb-3">
-								<label for="email" class="form-label">Phone</label> <input
-									type="email" class="form-control" id="email" required>
+								<form:label path="phone" class="form-label">Phone</form:label>
+								<form:input path="phone" type="text" class="form-control"
+									id="phone" />
+								<form:errors path="phone" class="text-danger" />
+
 							</div>
 							<div class="mb-3">
-								<label for="password" class="form-label">Password</label> <input
-									type="password" class="form-control" id="password" required>
+								<form:label path="password" class="form-label">Password</form:label>
+								<form:input path="password" type="password" class="form-control"
+									id="password" />
+								<form:errors path="password" class="text-danger" />
+
 							</div>
 							<div class="mb-3">
-								<label for="confirmPassword" class="form-label">Confirm
-									Password</label> <input type="password" class="form-control"
-									id="confirmPassword" required>
+								<form:label path="confirmPassword" class="form-label">Confirm Password</form:label>
+								<form:input path="confirmPassword" type="password"
+									class="form-control" id="confirmPassword" />
+								<form:errors path="confirmPassword" class="text-danger" />
+
 							</div>
+
 							<button type="submit" class="btn btn-primary w-100">Đăng
 								Ký</button>
-						</form>
+						</form:form>
+						<div>
+							<c:if test="${not empty error}">
+								<div class="alert alert-danger mt-3">${error}</div>
+							</c:if>
+							<c:if test="${not empty message}">
+								<div class="alert alert-success mt-3">${message}</div>
+							</c:if>
+						</div>
+
 					</div>
 					<div class="card-footer text-center">
-						<a href="#">Đã có tài khoản? Đăng nhập</a>
+						<a href="/login">Đã có tài khoản? Đăng nhập</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<%@ include file="../layout/footer.jsp" %>
-
-	<!-- Bootstrap JS and dependencies -->
-	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-	
+	<%@ include file="../layout/footer.jsp"%>
 	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-
-
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
 </body>
 </html>

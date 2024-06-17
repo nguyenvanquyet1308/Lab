@@ -34,7 +34,7 @@ body {
 	<div class="createProduct">
 
 		<h3 class="text-center">Add New Customer</h3>
-		<form:form action="/admin/QLProduct/create" modelAttribute="product">
+		<form:form action="/QLProduct/create" modelAttribute="product">
 
 
 			<div class="form-group">
@@ -81,7 +81,7 @@ body {
 
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<button type="submit" formaction="/admin/QLProduct/create"
+				<button type="submit" formaction="/QLProduct/create"
 					class="btn btn-primary">Create</button>
 				<button type="button" class="btn btn-dark">Close</button>
 			</div>

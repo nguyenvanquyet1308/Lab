@@ -26,7 +26,7 @@
 	<!-- Modal body -->
 	<div class="user mt-5 col-md-6">
 		<h3 class="text-center">Edit User</h3>
-		<form:form action="/admin/QLCustomer/update" modelAttribute="customer">
+		<form:form action="/QLCustomer/update" modelAttribute="customer">
 			<div class="form-group">
 				<form:label path="customerId" class="form-label">Id</form:label>
 				<form:input path="customerId" class="form-control" readonly="true" />
@@ -67,9 +67,9 @@
 			</div>
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<button type="submit" formaction="/admin/QLCustomer/update"
+				<button type="submit" formaction="/QLCustomer/update"
 					class="btn btn-primary">Update</button>
-				<a href="/admin/QLCustomer" class="btn btn-danger"> Close</a>
+				<a href="/QLCustomer" class="btn btn-danger"> Close</a>
 
 			</div>
 		</form:form>

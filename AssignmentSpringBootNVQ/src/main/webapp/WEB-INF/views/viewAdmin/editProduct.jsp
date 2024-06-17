@@ -26,7 +26,7 @@
 	<!-- Modal body -->
 	<div class="user mt-5 col-md-6">
 		<h3 class="text-center">Edit Product</h3>
-		<form:form action="/admin/QLProduct/update" modelAttribute="product">
+		<form:form action="/QLProduct/update" modelAttribute="product">
 			<div class="form-group">
 				<form:label path="productId" class="form-label">Id</form:label>
 				<form:input path="productId" class="form-control"  readonly="true"/>
@@ -84,9 +84,9 @@
 			</div>
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<button type="submit" formaction="/admin/QLProduct/update"
+				<button type="submit" formaction="/QLProduct/update"
 					class="btn btn-primary">Update</button>
-				<a href="/admin/QLProduct" class="btn btn-danger"> Close</a>
+				<a href="/QLProduct" class="btn btn-danger"> Close</a>
 
 			</div>
 		</form:form>

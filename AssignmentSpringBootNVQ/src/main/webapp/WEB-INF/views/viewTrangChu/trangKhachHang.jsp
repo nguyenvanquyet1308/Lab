@@ -42,118 +42,110 @@
 				</a>
 			</div>
 		</div>
-		<form:form action="/product" modelAttribute="product">
-			<div class="row row-cols-1 row-cols-md-3 g-5 py-5">
-				<c:forEach var="item" items="${page.content}">
-					<div class="col">
-						<div class="card">
+		<div class="row row-cols-1 row-cols-md-3 g-5 py-5">
+	
+			<c:forEach var="item" items="${page.content}">
+				<div class="col">
+					<div class="card">
 
-							<img alt="" src="/getimgae/${item.image}" class="card-img-top">
-							<div class="card-body">
-								<h5 class="card-title text-center mt-2">${item.name}</h5>
-							</div>
-							<div class="mb-5 d-flex justify-content-around">
-								<h3 class="unitPrice">${item.unitPrice}₫</h3>
-								<div class="icon-cart">
-
-									<a class=" show-modal" href="${item.productId}">
-										<img src="assets/iconcart.jpg" alt="" height="60px"
-										width="60px">
-
-									</a>
-								</div>
+						<img alt="" src="/getimgae/${item.image}" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title text-center mt-2">${item.name}</h5>
+						</div>
+						<div class="mb-5 d-flex justify-content-around">
+							<h3 class="unitPrice">${item.unitPrice}₫</h3>
+							<div class="icon-cart">
+								<a class=" show-modal" href="${item.productId}"> <img
+									src="assets/iconcart.jpg" alt="" height="60px" width="60px">
+								</a>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-				<nav aria-label="Page navigation" class="text-center;">
-					<ul class="pagination">
-						<li class="page-item"><a class="page-link"
-							href="?p=0">First</a></li>
-						<li class="page-item"><a class="page-link"
-							href="?p=${page.number-1}">Previous</a></li>
-						<c:forEach var="i" begin="0" end="${page.totalPages-1}">
-							<li
-								class="page-item <c:if test="${i eq page.number}">active</c:if>">
-								<a class="page-link" href="?p=${i}">${i+1}</a>
-							</li>
-						</c:forEach>
-						<li class="page-item"><a class="page-link"
-							href="?p=${page.number+1}">Next</a></li>
-						<li class="page-item"><a class="page-link"
-							href="?p=${page.totalPages-1}">Last</a></li>
-					</ul>
-				</nav>
-				<!-- Button trigger modal -->
+				</div>
+			</c:forEach> <br>
+			<nav aria-label="Page navigation" style="margin: 0 auto">
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="?p=0">First</a></li>
+					<li class="page-item"><a class="page-link"
+						href="?p=${page.number-1}">Previous</a></li>
+					<c:forEach var="i" begin="0" end="${page.totalPages-1}">
+						<li
+							class="page-item <c:if test="${i eq page.number}">active</c:if>">
+							<a class="page-link" href="?p=${i}">${i+1}</a>
+						</li>
+					</c:forEach>
+					<li class="page-item"><a class="page-link"
+						href="?p=${page.number+1}">Next</a></li>
+					<li class="page-item"><a class="page-link"
+						href="?p=${page.totalPages-1}">Last</a></li>
+				</ul>
+			</nav>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel"></h5>
+							<span id="name"> </span>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<form:form action="/gioHang/add" method="post">
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-md-6">
+										<img src="" id="productImage" height="120px" width="180px"
+											class="img-fluid" alt="Hình ảnh giày">
+									</div>
+									<div class="col-md-6">
+										<h5>Size:</h5>
+										<select class="form-select mb-3">
+											<option value="38">size 38</option>
+											<option value="39">size 39</option>
+											<option value="40">size 40</option>
+											<option value="41">size 41</option>
+											<option value="42">size 42</option>
+										</select>
+										<h5>Số lượng:</h5>
+										<input type="number" id="quantity" name="quantity"
+											class="form-control mb-3" value="1" min="1" required>
 
-
-				<!-- Modal -->
-				<form:form>
-					<div class="modal fade" id="exampleModal" tabindex="-1"
-						aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel"></h5>
-									<span id="name"> </span>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<div class="row">
-
-										<div class="col-md-6">
-											<img src="" id="productImage" height="120px" width="180px"
-												class="img-fluid" alt="Hình ảnh giày">
-										</div>
-										<div class="col-md-6">
-											<h5>Size:</h5>
-											<select class="form-select mb-3">
-												<option value="38">size 38</option>
-												<option value="39">size 39</option>
-												<option value="40">size 40</option>
-												<option value="41">size 41</option>
-												<option value="42">size 42</option>
-											</select>
-											<h5>Số lượng:</h5>
-											<input type="number" id="quantity" class="form-control mb-3"
-												value="1">
-											<div class="form-group">
-												<label for="unitPrice">Giá</label> <br> <span
-													id="unitPrice" style="color: red;"> </span>
-											</div>
-										</div>
-										<div>
-											<a style="color: blue;">Xem chi tiết sản phẩm</a>
+										<div class="form-group">
+											<label for="unitPrice">Giá bán: </label> <br> <span
+												id="unitPrice" style="color: red;"> </span>
 										</div>
 									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary"
-										data-bs-dismiss="modal">Close</button>
-									<a href="" class="btn btn-primary" id="IdCuaProduct"  >Thêm vào giỏ hàng
-										</a>
+									<div>
+										<a style="color: blue;">Xem chi tiết sản phẩm</a>
+									</div>
 								</div>
 							</div>
-						</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Close</button>
+								<input type="hidden" id="idProduct" name="id">
+								<button type="submit" class="addCart" style="font-size: 14px" >Thêm vào giỏ hàng</button>
+						</form:form>
 					</div>
-				</form:form>
-				<!-- - modal -->
-				Giải thích
-
+				</div>
 			</div>
-		</form:form>
-		<div id="saleoff">
-			<div class="box-left">
-				<h1>
-					<span>GIẢM GIÁ LÊN ĐẾN</span> <span>45%</span>
-				</h1>
-			</div>
-			<div class="box-right"></div>
 		</div>
+	
+
+	</div>
+	<div id="saleoff">
+		<div class="box-left">
+			<h1>
+				<span>GIẢM GIÁ LÊN ĐẾN</span> <span>45%</span>
+			</h1>
+		</div>
+		<div class="box-right"></div>
+	</div>
 
 
-		<%@ include file="../layout/footer.jsp"%>
+	<%@ include file="../layout/footer.jsp"%>
 
 	</div>
 
@@ -162,11 +154,13 @@
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 	<script type="text/javascript">
 		$(document).ready(
@@ -179,14 +173,16 @@
 								var href = $(this).attr('href');
 
 								$.get(href, function(Product, status) {
+									$('#idProduct').val(Product.productId);
 
 									$('#name').text(Product.name);
 									$('#productImage').attr('src',
 											"/getimgae/" + Product.image);
 									$('#unitPrice').text(
 											Product.unitPrice + " đ");
-									
-                                    $('#IdCuaProduct').attr('href',"/gioHang/"+ Product.productId);
+
+									$('#IdCuaProduct').attr('href',
+											"/gioHang/" + Product.productId);
 								});
 
 								$('#exampleModal').modal('show');

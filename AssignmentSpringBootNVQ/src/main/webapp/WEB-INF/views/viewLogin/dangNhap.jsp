@@ -12,8 +12,24 @@
 
 <body>
 <%@ include file="../layout/header.jsp" %>
+
+
+
+
     <div class="login-container">
         <h2 class="text-center mb-4">Login</h2>
+        
+        
+        <div class="">	
+			   	<div style="text-align: center;">
+					
+					
+					<c:if test="${not empty error}">
+						<div class="alert alert-danger">${error}</div>
+					</c:if>
+				</div>
+			</div>
+        
         <form action="/dangNhap" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>

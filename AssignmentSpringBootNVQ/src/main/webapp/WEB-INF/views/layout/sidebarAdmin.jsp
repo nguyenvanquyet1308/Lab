@@ -50,10 +50,10 @@
 <body>
     <!-- sidebar.html -->
     <div class="sidebar">
-        <a href="/admin/category/index" class="nav-link">Quản lý Loại</a>
-        <a href="/admin/QLCustomer" class="nav-link">Quản lý Người Dùng</a>
-         <a href="/admin/QLProduct" class="nav-link">Quản lý Sản Phẩm</a>
-        <a href="/admin/QLProduct" class="nav-link">Quản lý Đơn Hàng</a>
+        <a href="/category/index" class="nav-link">Quản lý Loại</a>
+        <a href="/QLCustomer" class="nav-link">Quản lý Người Dùng</a>
+         <a href="/QLProduct" class="nav-link">Quản lý Sản Phẩm</a>
+        <a href="/QLProduct" class="nav-link">Quản lý Đơn Hàng</a>
         <a href="" class="nav-link">Thống kê</a>
     </div>
 

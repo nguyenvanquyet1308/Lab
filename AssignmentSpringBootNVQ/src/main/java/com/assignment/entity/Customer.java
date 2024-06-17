@@ -2,6 +2,7 @@ package com.assignment.entity;
 
 import lombok.Data;
 
+
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -38,6 +40,9 @@ public class Customer {
 
 	@NotBlank(message = "Không được để trống mật khẩu!")
 	private String password;
+	
+	@Transient
+	private String confirmPassword;
 
 	@Pattern(regexp = "^0[0-9]{9}$", message = "Phone number must start with 0 and have 10 digits")
 	private String phone;

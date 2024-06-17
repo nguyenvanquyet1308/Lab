@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.assignment.dao.CustomerDAO;
 import com.assignment.entity.Customer;
+import com.assignment.library.SessionService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProfileController {
@@ -17,23 +20,30 @@ public class ProfileController {
 	@Autowired
 	CustomerDAO daoCustomer;
 
+	@Autowired
+	SessionService sessionService;
+
 	@RequestMapping("/hoSo")
-	public String Index() {
+	public String Index(HttpServletRequest request) {
 
 		return "viewHoSo/hoSo";
 	}
 
 	@RequestMapping("/hoSo/{customerId}")
-	public String EditProfile(@PathVariable("customerId") Integer customerId ,  Model model  ) {
-		
+	public String EditProfile(@PathVariable("customerId") Integer customerId, Model model, HttpServletRequest request) {
+		Customer check = (Customer) request.getSession().getAttribute("user");
+
 		Customer customer = daoCustomer.findById(customerId).get();
-		model.addAttribute("customer",customer);
-		
-		
+
+		if (customer == null) {
+			return "viewLogin/dangNhap";
+		}
+		model.addAttribute("customer", customer);
+
 		List<Customer> item = daoCustomer.findAll();
-		model.addAttribute("itemCustomer",item);
-		
-		
+		model.addAttribute("itemCustomer", item);
+
 		return "viewHoSo/hoSo";
+
 	}
 }

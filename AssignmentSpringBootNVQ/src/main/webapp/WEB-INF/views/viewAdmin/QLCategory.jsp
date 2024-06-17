@@ -24,7 +24,7 @@
 				<h3 style="text-align: center">Category Form</h3>
 			</div>
 			<div class="card-body">
-				<form:form action="/admin/category/index"
+				<form:form action="/category/index"
 					modelAttribute="itemCategory" class="form">
 
 					<div class="form-group">
@@ -39,11 +39,11 @@
 					</div>
 					<hr>
 					<div class="form-group">
-						<button type="submit" formaction="/admin/category/create"
+						<button type="submit" formaction="/category/create"
 							class="btn btn-primary">Create</button>
-						<button type="submit" formaction="/admin/category/update"
+						<button type="submit" formaction="/category/update"
 							class="btn btn-warning">Update</button>
-						<a href="/admin/category/index" class="btn btn-secondary">Reset</a>
+						<a href="/category/index" class="btn btn-secondary">Reset</a>
 					</div>
 				</form:form>
 			</div>
@@ -68,9 +68,9 @@
 								<tr>
 									<td>${item.categoryId}</td>
 									<td>${item.name}</td>
-									<td><a href="/admin/category/edit/${item.categoryId}"
+									<td><a href="/category/edit/${item.categoryId}"
 										class="btn btn-sm btn-primary">Edit</a> <a
-										href="/admin/category/delete/${item.categoryId}"  onclick="return confirm('Are you sure!')"
+										href="/category/delete/${item.categoryId}"  onclick="return confirm('Are you sure!')"
 										class="btn btn-danger">Delete</a></td>
 								</tr>
 							</c:forEach>

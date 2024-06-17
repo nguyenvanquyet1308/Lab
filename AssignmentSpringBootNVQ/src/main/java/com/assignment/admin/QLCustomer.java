@@ -24,7 +24,7 @@ public class QLCustomer {
 	@Autowired
 	CustomerDAO daocustomer;
 
-	@RequestMapping("/admin/QLCustomer")
+	@RequestMapping("/QLCustomer")
 	public String Index(Model model) {
 		Customer customer = new Customer();
 		model.addAttribute("customer", customer);
@@ -44,7 +44,7 @@ public class QLCustomer {
 		return "viewAdmin/QLCustomer";
 	}
 	
-	@RequestMapping("/admin/QLCustomer/cr")
+	@RequestMapping("/QLCustomer/cr")
 	public String Cr(Model model) {
 		Customer customer = new Customer();
 		model.addAttribute("customer", customer);
@@ -53,7 +53,7 @@ public class QLCustomer {
 		 return "/viewAdmin/createCustomer";
 	}
 
-	@RequestMapping("/admin/QLCustomer/create")
+	@RequestMapping("/QLCustomer/create")
 	public String create(@Valid @ModelAttribute("customer") Customer item, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			List<Customer> items = daocustomer.findAll();
@@ -64,16 +64,16 @@ public class QLCustomer {
 		item.setRegisteredDate(new Date());
 		item.setAdmin(true);
 		daocustomer.save(item);
-		return "redirect:/admin/QLCustomer";
+		return "redirect:/QLCustomer";
 	}
 
-	@RequestMapping("/admin/QLCustomer/delete/{customerId}")
+	@RequestMapping("/QLCustomer/delete/{customerId}")
 	public String DeleteUser(@PathVariable("customerId") Integer customerId) {
 		daocustomer.deleteById(customerId);
-		return "redirect:/admin/QLCustomer";
+		return "redirect:/QLCustomer";
 	}
 
-	@RequestMapping("/admin/QLCustomer/edit/{customerId}")
+	@RequestMapping("/QLCustomer/edit/{customerId}")
 	public String EditUser(Model model, @PathVariable("customerId") Integer id) {
 		Customer customer = daocustomer.findById(id).get();
 		model.addAttribute("customer", customer);
@@ -83,7 +83,7 @@ public class QLCustomer {
 		return "viewAdmin/editCustomer";
 	}
 
-	@RequestMapping("/admin/QLCustomer/update")
+	@RequestMapping("/QLCustomer/update")
 	public String UpdateUser(@Valid @ModelAttribute("customer") Customer item, BindingResult result,Model model) {
            if(result.hasErrors()) {
         	   List<Customer> items = daocustomer.findAll();
@@ -92,7 +92,7 @@ public class QLCustomer {
            }
 		daocustomer.save(item);
 
-		return "redirect:/admin/QLCustomer";
+		return "redirect:/QLCustomer";
 	}
 
 }
