@@ -14,15 +14,16 @@
 tr {
 	font-size: 12px;
 }
+
 </style>
 <body>
 	<%@ include file="../layout/sidebarAdmin.jsp"%>
 
 	<div class="user mt-5">
 		<div class="text-start ">
-		<a href="/QLProduct/cr"><button class="btn btn-success" >Create New User</button></a>	
+		<a href="/QLProduct/cr"><button class="btn btn-success" >Create Product</button></a>	
 		</div>
-		<h3 class="text-center">User Management</h3>
+		<h3 class="text-center">Product Management</h3>
 		<form:form action="/QLProduct" modelAttribute="product">
 			<table class="table table-bordered">
 				<thead class="table-dark">
@@ -57,10 +58,10 @@ tr {
 							
 
 							<td>
-								<button class="btn btn-primary"
+								<button class="btn btn-primary" style="font-size: 10px;"
 									formaction="/QLProduct/edit/${item.productId}">Edit</button>
 
-								<a class="btn btn-danger btn-sm"
+								<a class="btn btn-danger btn-sm" style="font-size: 10px;"
 								href="/QLProduct/delete/${item.productId}">Delete</a>
 							</td>
 						</tr>

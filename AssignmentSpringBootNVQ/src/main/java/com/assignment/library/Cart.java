@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.assignment.entity.CartItem;
+import com.assignment.entity.OrderDetail;
 import com.assignment.entity.Product;
 
 public class Cart {
@@ -40,7 +41,7 @@ public class Cart {
     }
 
     public void addItem(Product product, int quantity) {
-        CartItem item = getItem(product);
+    	CartItem item = getItem(product);
         if (item != null) {
             item.setQuantity(item.getQuantity() + quantity);
         } else {
@@ -51,14 +52,14 @@ public class Cart {
     }
 
     public void updateItem(Product product, int quantity) {
-        CartItem item = getItem(product);
+    	CartItem item = getItem(product);
         if (item != null) {
             item.setQuantity(quantity);
         }
     }
 
     public void removeItem(Product product) {
-        CartItem item = getItem(product);
+    	CartItem item = getItem(product);
         if (item != null) {
             items.remove(item);
         }

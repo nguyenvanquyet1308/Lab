@@ -61,10 +61,11 @@ public class ShowProduct {
 
 		// Kiểm tra xem có tham số min và max không
 		if (keywords.isPresent() && !keywords.get().isEmpty()) {
-			String keyword = "%" + keywords.get() + "%"; // Chuẩn bị từ khóa tìm kiếm với wildcard
+			String keyword = "%" + keywords.get() + "%";
 			Page<Product> items = daoProduct.findAllByNameLike(keyword, pageable);
 			model.addAttribute("page", items);
 			model.addAttribute("keywords", keywords.get());
+			
 		} else if (min.isPresent() || max.isPresent()) {
 			float minPrice = min.orElse(Float.MIN_VALUE);
 			float maxPrice = max.orElse(Float.MAX_VALUE);
@@ -74,6 +75,8 @@ public class ShowProduct {
 			Page<Product> page = daoProduct.findAll(pageable);
 			model.addAttribute("page", page);
 		}
+		
+		
 
 		return "viewSanPham/sanPham";
 	}

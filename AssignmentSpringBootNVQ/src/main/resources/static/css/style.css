@@ -441,3 +441,6 @@ translateY(
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	color: white;
 }
+.imgageCart{
+	border-radius: 35px 35px 35px 35px;
+}

@@ -94,42 +94,47 @@ public class CheckLogin {
 		return "viewLogin/dangKy";
 	}
 
+	@PostMapping("/dangKy")
+	public String DangKy(@Valid  @ModelAttribute("customer") Customer customer,
+			BindingResult result,@RequestParam("email") String email, Model model) {
+//		if (email.equals("")) {
+//			model.addAttribute("error", "Email Không được để trống");
+//
+//			return "viewLogin/dangKy";
+//
+//		}
+		if (result.hasErrors()) {
+			return "viewLogin/dangKy";
+		} else if (customerService.findByEmail(customer.getEmail()) != null) {
+			model.addAttribute("error", "Email Đã tồn tại");
+			return "viewLogin/dangKy";
+		} else if (!customer.getPassword().equals(customer.getConfirmPassword())) {
+			model.addAttribute("error", "Password không trùng nhau");
+			return "viewLogin/dangKy";
+		} else {
+			try {
+				mailer.send(email, "Thư gửi mã xác nhận gmail", String.valueOf(emailbody));
+				System.out.println("đã gửi gmail");
+			} catch (MessagingException e) {
+				System.out.println("lỗi" + e);
+			}
+		}
+		return "viewLogin/checkEmail";
+	}
 
-    @PostMapping("/dangKy")
-    public String DangKy(@Valid @RequestParam("email") String email, @ModelAttribute("customer") Customer customer,
-                         BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "viewLogin/dangKy";
-        } else if (customerService.findByEmail(customer.getEmail()) != null) {
-            model.addAttribute("error", "Email Đã tồn tại");
-            return "viewLogin/dangKy";
-        } else if (!customer.getPassword().equals(customer.getConfirmPassword())) {
-            model.addAttribute("error", "Password không trùng nhau");
-            return "viewLogin/dangKy";
-        } else {
-            try {
-                mailer.send(email, "Thư gửi mã xác nhận gmail", String.valueOf(emailbody));
-                System.out.println("đã gửi gmail");
-            } catch (MessagingException e) {
-                System.out.println("lỗi" + e);
-            }
-           
-        }
-        return "viewLogin/checkEmail";
-    }
-
-    @RequestMapping(value = "/checkEmail", method = RequestMethod.POST)
-    public String checkEmail(@ModelAttribute("customer") Customer customer, @RequestParam("MaOTP") Integer MaOTP, Model model) {
-        if (MaOTP.equals(emailbody)) {
-            customer.setAdmin(false);
-            customer.setRegisteredDate(new Date());
-            daoCustomer.save(customer);
-            return "viewLogin/dangNhap";
-        } else {
-            model.addAttribute("error", "Mã OTP không phù hợp");
-            return "viewLogin/checkEmail";
-        }
-    }
+	@RequestMapping(value = "/checkEmail", method = RequestMethod.POST)
+	public String checkEmail(@ModelAttribute("customer") Customer customer, @RequestParam("MaOTP") Integer MaOTP,
+			Model model) {
+		if (MaOTP.equals(emailbody)) {
+			customer.setAdmin(false);
+			customer.setRegisteredDate(new Date());
+			daoCustomer.save(customer);
+			return "viewLogin/dangNhap";
+		} else {
+			model.addAttribute("error", "Mã OTP không phù hợp");
+			return "viewLogin/checkEmail";
+		}
+	}
 
 	@PostMapping("/doimatkhau")
 	public String DoiMatKhau(@ModelAttribute("customer") Customer item, @RequestParam("password") String password,

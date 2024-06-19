@@ -33,7 +33,7 @@ body {
 
 	<div class="createProduct">
 
-		<h3 class="text-center">Add New Customer</h3>
+		<h3 class="text-center">Add New Product</h3>
 		<form:form action="/QLProduct/create" modelAttribute="product">
 
 

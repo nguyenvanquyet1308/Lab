@@ -15,37 +15,41 @@ import jakarta.persistence.Transient;
 @Entity
 @Table(name = "orderDetail")
 public class OrderDetail {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderDetailId;
-    
-    @ManyToOne
-    @JoinColumn(name = "orderId")
-    private Orders order;
-    
-    @ManyToOne
-    @JoinColumn(name = "productId")
-    private Product product;
-    
-    private Integer quantity;
-    
-    private Float unitPrice;
-    
 
-	@Transient
-	Float subTotal = quantity*unitPrice;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer orderDetailId;
 
+	@ManyToOne
+	@JoinColumn(name = "orderId")
+	private Orders order;
 
-//	public OrderDetail(Float subTotal) {
-//		super();
-//		this.subTotal = quantity * unitPrice;
+	@ManyToOne
+	@JoinColumn(name = "productId")
+	private Product product;
+
+	private Integer quantity;
+
+	private Float unitPrice;
+
+//	@Transient
+//	Float subTotal;
+//
+//	public OrderDetail(Product product) {
+//		this.product = product;
+//		this.quantity = 1;
+//		this.subTotal = product.getUnitPrice();
 //	}
 //
-//	public Float getSubTotal() {
-//		subTotal = unitPrice * quantity;
+////
+//
+//	public double getSubTotal() {
+//		subTotal = product.getUnitPrice() * quantity;
 //		return subTotal;
 //	}
-	
+//
+//	public OrderDetail() {
+//		super();
+//	}
 
 }

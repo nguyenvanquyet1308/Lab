@@ -37,7 +37,7 @@
         <div class="container mt-5 col-md-4">
             <div class="form-group">
                 <label for="MaOTP">Hãy nhập mã OTP được gửi đến gmail</label>
-                <input name="MaOTP" type="text" class="form-control" id="MaOTP" required>
+                <input name="MaOTP" type="number" class="form-control" id="MaOTP" required>
             </div>
             <div>
                 <button class="btn btn-success" type="submit">Submit</button>

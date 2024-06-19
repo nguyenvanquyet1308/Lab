@@ -52,10 +52,10 @@ tr {
 
 							<td>${item.admin}</td>
 							<td>
-								<button class="btn btn-primary"
+								<button class="btn btn-primary" style="font-size: 10px;"
 									formaction="/QLCustomer/edit/${item.customerId}">Edit</button>
 
-								<a class="btn btn-danger btn-sm"
+								<a class="btn btn-danger btn-sm" style="font-size: 10px;"
 								href="/QLCustomer/delete/${item.customerId}">Delete</a>
 							</td>
 						</tr>

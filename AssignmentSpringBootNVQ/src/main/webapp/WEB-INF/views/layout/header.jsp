@@ -50,7 +50,7 @@
 								<li><a class="dropdown-item text-body "
 									href="/dangXuat">Đăng Xuất</a></li>
 									<li><a class="dropdown-item text-body "
-									href="/donHang">Đơn hàng</a></li>
+									href="/thanhtoan">Đơn hàng</a></li>
 							</ul>
 				
 					</div>
@@ -101,7 +101,7 @@
 								<li><a class="dropdown-item text-body "
 									href="/dangXuat">Đăng Xuất</a></li>
 									<li><a class="dropdown-item text-body "
-									href="/donHang">Đơn hàng</a></li>
+									href="/thanhtoan">Đơn hàng</a></li>
 							</ul>
 				
 					</div>

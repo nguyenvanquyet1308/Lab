@@ -55,14 +55,15 @@
 						<div class="mb-5 d-flex justify-content-around">
 							<h3 class="unitPrice">${item.unitPrice}₫</h3>
 							<div class="icon-cart">
-								<a class=" show-modal" href="${item.productId}"> <img
-									src="assets/iconcart.jpg" alt="" height="60px" width="60px">
+								<a class="show-modal" href="${item.productId}"> <img class="imgageCart"
+									src="assets/carticon.png" alt="" height="60px" width="60px">
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</c:forEach> <br>
+			</c:forEach> 
+			<div style="margin: 0 auto">
 			<nav aria-label="Page navigation" style="margin: 0 auto">
 				<ul class="pagination">
 					<li class="page-item"><a class="page-link" href="?p=0">First</a></li>
@@ -80,6 +81,7 @@
 						href="?p=${page.totalPages-1}">Last</a></li>
 				</ul>
 			</nav>
+			</div>
 			
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1"

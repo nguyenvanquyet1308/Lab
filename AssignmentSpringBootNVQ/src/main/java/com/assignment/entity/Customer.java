@@ -44,7 +44,7 @@ public class Customer {
 	@Transient
 	private String confirmPassword;
 
-	@Pattern(regexp = "^0[0-9]{9}$", message = "Phone number must start with 0 and have 10 digits")
+	@NotBlank(message = "Không được để trống SDT!")
 	private String phone;
 
 	@Temporal(TemporalType.DATE)

@@ -13,6 +13,7 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	
 	
 	Page<Product> findByunitPriceBetween(float minPrice, float maxPrice, Pageable pageable);
+	
     Page<Product> findAllByNameLike(String keywords, Pageable pageable);
 
 }

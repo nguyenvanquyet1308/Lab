@@ -55,7 +55,7 @@ public class QLCategory {
         }	
      
 		daoCategory.save(item);
-		return "redirect:/admin/category/index";
+		return "redirect:/category/index";
 	}
 
 	@RequestMapping("/category/update")
@@ -73,7 +73,7 @@ public class QLCategory {
 	@RequestMapping("/category/delete/{categoryId}")
 	public String create(@PathVariable("categoryId") Integer categoryId) {
 		daoCategory.deleteById(categoryId);
-		return "redirect:/admin/category/index";
+		return "redirect:/category/index";
 	}
 	 
 }

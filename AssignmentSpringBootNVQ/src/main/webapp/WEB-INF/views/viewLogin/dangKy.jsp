@@ -96,7 +96,7 @@
 
 					</div>
 					<div class="card-footer text-center">
-						<a href="/login">Đã có tài khoản? Đăng nhập</a>
+						<a href="/dangNhap">Đã có tài khoản? Đăng nhập</a>
 					</div>
 				</div>
 			</div>

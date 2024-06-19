@@ -64,7 +64,7 @@ public class QLProduct {
 		item.setCreateDate(new Date());
 		item.setStatus(true);
 		daoProduct.save(item);
-		return "redirect:/admin/QLProduct";
+		return "redirect:/QLProduct";
 	}
 
 	@RequestMapping("/QLProduct/edit/{productId}")

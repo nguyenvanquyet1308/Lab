@@ -39,10 +39,10 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required >
             </div>
-            <div class="d-grid"> <button type="submit" class="btn btn-primary ">Login</button></div>
+            <div class="d-grid"> <button type="submit" class="btn btn-primary text-center ">Login</button></div>
            
             <div class="form-text mt-3 ">
-                <a href="#">Forgot password?</a> | <a href="#">Sign up</a>
+                <a href="#">Forgot password?</a> | <a href="/dangKy">Sign up</a>
             </div>
         </form>
     </div>
